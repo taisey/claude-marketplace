@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "taisey-marketplace",
+  "version": "1.0.0",
+  "description": "Custom Claude Code plugin marketplace",
+  "owner": {
+    "name": "taisey",
+    "email": ""
+  },
+  "plugins": []
+}
