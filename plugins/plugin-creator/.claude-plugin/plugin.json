@@ -1,0 +1,9 @@
+{
+  "name": "plugin-creator",
+  "version": "1.0.0",
+  "description": "Plugin for creating and updating Claude Code plugins. Guides users through workflow hearing, plugin design, file generation, and marketplace registration.",
+  "author": {
+    "name": "taisey",
+    "email": ""
+  }
+}

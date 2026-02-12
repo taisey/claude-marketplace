@@ -12,6 +12,11 @@
       "name": "base-plugin",
       "source": "./plugins/base-plugin",
       "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting"
+    },
+    {
+      "name": "plugin-creator",
+      "source": "./plugins/plugin-creator",
+      "description": "Plugin for creating and updating Claude Code plugins"
     }
   ]
 }
