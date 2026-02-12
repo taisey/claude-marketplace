@@ -1,0 +1,8 @@
+{
+  "name": "base-plugin",
+  "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting",
+  "author": {
+    "name": "taisey",
+    "email": ""
+  }
+}

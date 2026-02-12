@@ -1,0 +1,44 @@
+{
+   "mcpServers": {
+      "chrome-devtools": {
+         "args": [
+            "chrome-devtools-mcp@latest",
+            "-u http://localhost:9222",
+            "--isolated"
+         ],
+         "command": "npx"
+      },
+      "context7": {
+         "args": [
+            "-y",
+            "@upstash/context7-mcp@latest"
+         ],
+         "command": "npx"
+      },
+      "github": {
+         "args": [
+            "run",
+            "-i",
+            "--rm",
+            "-e",
+            "GITHUB_PERSONAL_ACCESS_TOKEN",
+            "ghcr.io/github/github-mcp-server"
+         ],
+         "command": "docker",
+         "env": {
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+         }
+      },
+      "serena": {
+         "args": [
+            "--from",
+            "git+https://github.com/oraios/serena",
+            "serena",
+            "start-mcp-server",
+            "--enable-web-dashboard",
+            "false"
+         ],
+         "command": "uvx"
+      }
+   }
+}

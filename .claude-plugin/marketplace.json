@@ -7,5 +7,11 @@
     "name": "taisey",
     "email": ""
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "base-plugin",
+      "source": "./plugins/base-plugin",
+      "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting"
+    }
+  ]
 }
