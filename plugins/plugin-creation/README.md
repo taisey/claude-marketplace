@@ -1,4 +1,4 @@
-# plugin-creator
+# plugin-creation
 
 Plugin for creating and updating Claude Code plugins.
 
