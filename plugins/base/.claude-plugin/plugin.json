@@ -1,5 +1,6 @@
 {
-  "name": "base-plugin",
+  "name": "base",
+  "version": "1.1.0",
   "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting",
   "author": {
     "name": "taisey",
