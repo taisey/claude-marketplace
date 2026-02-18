@@ -1,4 +1,4 @@
-# base-plugin
+# base
 
 GitHub integration, PR creation, and connection troubleshooting for Claude Code.
 

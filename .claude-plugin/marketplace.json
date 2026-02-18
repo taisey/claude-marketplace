@@ -9,13 +9,13 @@
   },
   "plugins": [
     {
-      "name": "base-plugin",
-      "source": "./plugins/base-plugin",
+      "name": "base",
+      "source": "./plugins/base",
       "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting"
     },
     {
-      "name": "plugin-creator",
-      "source": "./plugins/plugin-creator",
+      "name": "plugin-creation",
+      "source": "./plugins/plugin-creation",
       "description": "Plugin for creating and updating Claude Code plugins"
     }
   ]
