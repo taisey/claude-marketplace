@@ -1,45 +1,143 @@
 ---
 name: github
-description: Activates when performing GitHub operations like creating PRs, managing branches, pushing files, or when GitHub MCP connection fails with errors like "authentication failed" or "GITHUB_PERSONAL_ACCESS_TOKEN".
-version: 1.0.0
+description: Activates when performing GitHub operations like creating PRs, managing branches, viewing issues, or any GitHub-related tasks. Uses the gh CLI command for all GitHub interactions.
+version: 2.0.0
 ---
 
-# GitHub MCP Server
+# GitHub CLI (gh)
 
-## Available Tools
+Use the `gh` command for all GitHub operations. Do not use MCP server tools.
 
-### Branches
-- `mcp__github__create_branch` - Create a remote branch
-- `mcp__github__list_branches` - List branches
+## Pull Requests
 
-### Files
-- `mcp__github__push_files` - Push multiple files at once
-- `mcp__github__create_or_update_file` - Create or update a single file
-- `mcp__github__get_file_contents` - Get file contents
+```bash
+# Create a PR
+gh pr create --title "Title" --body "Description"
 
-### Pull Requests
-- `mcp__github__create_pull_request` - Create a PR
-- `mcp__github__get_pull_request` - Get PR details
-- `mcp__github__list_pull_requests` - List PRs
-- `mcp__github__update_pull_request` - Update a PR
+# List PRs
+gh pr list
 
-### Commits
-- `mcp__github__get_commit` - Get commit details
-- `mcp__github__list_commits` - List commit history
-- `mcp__github__get_pull_request_diff` - Get PR diff
+# View PR details
+gh pr view <number>
+
+# Edit a PR
+gh pr edit <number> --title "New title" --body "New description"
+
+# Merge a PR
+gh pr merge <number>
+
+# View PR diff
+gh pr diff <number>
+
+# Check out a PR
+gh pr checkout <number>
+```
+
+## Issues
+
+```bash
+# List issues
+gh issue list
+
+# Create an issue
+gh issue create --title "Title" --body "Description"
+
+# View issue details
+gh issue view <number>
+
+# Close an issue
+gh issue close <number>
+```
+
+## Branches
+
+```bash
+# List branches
+gh api repos/{owner}/{repo}/branches | jq '.[].name'
+
+# Create a remote branch (via git)
+git push origin HEAD:<branch-name>
+```
+
+## Files / Contents
+
+```bash
+# Get file contents
+gh api repos/{owner}/{repo}/contents/{path} | jq -r '.content' | base64 -d
+```
+
+## Commits
+
+```bash
+# List commits
+gh api repos/{owner}/{repo}/commits | jq '.[].commit.message'
+
+# Get commit details
+gh api repos/{owner}/{repo}/commits/{sha}
+```
+
+## Repository
+
+```bash
+# View repository info
+gh repo view
+
+# Open repository in browser
+gh repo view --web
+```
 
 ## Troubleshooting
 
-If connection fails, check in order:
+### gh not installed
 
-### 1. Token set?
-```bash
-echo $GITHUB_PERSONAL_ACCESS_TOKEN
-```
-**Fix**: `echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."' >> ~/.zshrc && source ~/.zshrc`, then restart Claude Code.
+First, check if `gh` is available:
 
-### 2. Token valid?
 ```bash
-curl -s -H "Authorization: token $GITHUB_PERSONAL_ACCESS_TOKEN" https://api.github.com/user | head -5
+which gh
 ```
-**Fix**: Regenerate at https://github.com/settings/tokens (scopes: `repo`, `read:org`), update `~/.zshrc`.
+
+If the command is not found, output the following guide to the user:
+
+---
+
+**gh CLI is not installed.**
+
+Install it for your platform:
+
+**macOS**
+```bash
+brew install gh
+```
+
+**Ubuntu / Debian**
+```bash
+sudo apt install gh
+```
+
+**Other**
+Official install guide: https://cli.github.com/manual/installation
+
+After installing, authenticate:
+```bash
+gh auth login
+```
+
+---
+
+### gh not authenticated
+
+```bash
+gh auth status
+```
+
+If not authenticated:
+
+```bash
+gh auth login
+```
+
+### Verify authentication
+
+```bash
+gh api user | jq '.login'
+```
