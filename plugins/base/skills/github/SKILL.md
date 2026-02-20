@@ -6,103 +6,103 @@ version: 2.0.0
 
 # GitHub CLI (gh)
 
-GitHub操作はすべて `gh` コマンドを使用する。MCP serverは使用しない。
+Use the `gh` command for all GitHub operations. Do not use MCP server tools.
 
 ## Pull Requests
 
 ```bash
-# PR作成
-gh pr create --title "タイトル" --body "説明"
+# Create a PR
+gh pr create --title "Title" --body "Description"
 
-# PR一覧
+# List PRs
 gh pr list
 
-# PR詳細
+# View PR details
 gh pr view <number>
 
-# PR編集
-gh pr edit <number> --title "新タイトル" --body "新説明"
+# Edit a PR
+gh pr edit <number> --title "New title" --body "New description"
 
-# PRをマージ
+# Merge a PR
 gh pr merge <number>
 
-# PRのdiff確認
+# View PR diff
 gh pr diff <number>
 
-# PRをチェックアウト
+# Check out a PR
 gh pr checkout <number>
 ```
 
 ## Issues
 
 ```bash
-# Issue一覧
+# List issues
 gh issue list
 
-# Issue作成
-gh issue create --title "タイトル" --body "説明"
+# Create an issue
+gh issue create --title "Title" --body "Description"
 
-# Issue詳細
+# View issue details
 gh issue view <number>
 
-# Issueをクローズ
+# Close an issue
 gh issue close <number>
 ```
 
 ## Branches
 
 ```bash
-# ブランチ一覧
+# List branches
 gh api repos/{owner}/{repo}/branches | jq '.[].name'
 
-# リモートブランチ作成（git経由）
+# Create a remote branch (via git)
 git push origin HEAD:<branch-name>
 ```
 
 ## Files / Contents
 
 ```bash
-# ファイル内容取得
+# Get file contents
 gh api repos/{owner}/{repo}/contents/{path} | jq -r '.content' | base64 -d
 ```
 
 ## Commits
 
 ```bash
-# コミット一覧
+# List commits
 gh api repos/{owner}/{repo}/commits | jq '.[].commit.message'
 
-# コミット詳細
+# Get commit details
 gh api repos/{owner}/{repo}/commits/{sha}
 ```
 
 ## Repository
 
 ```bash
-# リポジトリ情報
+# View repository info
 gh repo view
 
-# リポジトリをブラウザで開く
+# Open repository in browser
 gh repo view --web
 ```
 
 ## Troubleshooting
 
-### gh未インストールの場合
+### gh not installed
 
-まず `gh` の存在を確認する：
+First, check if `gh` is available:
 
 ```bash
 which gh
 ```
 
-コマンドが見つからない場合は、以下のガイドをユーザーに出力する：
+If the command is not found, output the following guide to the user:
 
 ---
 
-**gh CLI がインストールされていません。**
+**gh CLI is not installed.**
 
-お使いの環境に合わせてインストールしてください：
+Install it for your platform:
 
 **macOS**
 ```bash
@@ -114,29 +114,29 @@ brew install gh
 sudo apt install gh
 ```
 
-**その他**
-公式インストールガイド: https://cli.github.com/manual/installation
+**Other**
+Official install guide: https://cli.github.com/manual/installation
 
-インストール後、認証を実行してください：
+After installing, authenticate:
 ```bash
 gh auth login
 ```
 
 ---
 
-### gh未認証の場合
+### gh not authenticated
 
 ```bash
 gh auth status
 ```
 
-未認証なら：
+If not authenticated:
 
 ```bash
 gh auth login
 ```
 
-### 認証確認
+### Verify authentication
 
 ```bash
 gh api user | jq '.login'
