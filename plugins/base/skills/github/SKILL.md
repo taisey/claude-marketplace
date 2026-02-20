@@ -88,6 +88,42 @@ gh repo view --web
 
 ## Troubleshooting
 
+### gh未インストールの場合
+
+まず `gh` の存在を確認する：
+
+```bash
+which gh
+```
+
+コマンドが見つからない場合は、以下のガイドをユーザーに出力する：
+
+---
+
+**gh CLI がインストールされていません。**
+
+お使いの環境に合わせてインストールしてください：
+
+**macOS**
+```bash
+brew install gh
+```
+
+**Ubuntu / Debian**
+```bash
+sudo apt install gh
+```
+
+**その他**
+公式インストールガイド: https://cli.github.com/manual/installation
+
+インストール後、認証を実行してください：
+```bash
+gh auth login
+```
+
+---
+
 ### gh未認証の場合
 
 ```bash

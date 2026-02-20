@@ -2,19 +2,11 @@
 
 GitHub integration using the `gh` CLI for Claude Code.
 
+## Prerequisites
+
+`gh` CLI がインストール済みであること。未インストールの場合は github skill がガイドを出力します。
+
 ## Setup
-
-### 1. Install gh CLI
-
-```bash
-# macOS
-brew install gh
-
-# Linux
-sudo apt install gh  # or see https://cli.github.com
-```
-
-### 2. Authenticate
 
 ```bash
 gh auth login
