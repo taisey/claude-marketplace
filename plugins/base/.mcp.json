@@ -15,16 +15,6 @@
          ],
          "command": "npx"
       },
-      "github": {
-         "args": [
-            "-y",
-            "@modelcontextprotocol/server-github"
-         ],
-         "command": "npx",
-         "env": {
-            "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
-         }
-      },
       "serena": {
          "args": [
             "--from",

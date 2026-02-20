@@ -1,18 +1,27 @@
 # base
 
-GitHub integration, PR creation, and connection troubleshooting for Claude Code.
+GitHub integration using the `gh` CLI for Claude Code.
 
 ## Setup
 
-### 1. Set GitHub Token
+### 1. Install gh CLI
 
 ```bash
-echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_your_token_here"' >> ~/.zshrc
-source ~/.zshrc
+# macOS
+brew install gh
+
+# Linux
+sudo apt install gh  # or see https://cli.github.com
+```
+
+### 2. Authenticate
+
+```bash
+gh auth login
 ```
 
 ## Features
 
 | Type | Name | Description |
 |------|------|-------------|
-| Skill | `github` | GitHub MCP server usage and troubleshooting |
+| Skill | `github` | GitHub operations via gh CLI (PRs, Issues, Branches, Commits) |

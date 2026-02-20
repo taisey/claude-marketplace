@@ -1,45 +1,107 @@
 ---
 name: github
-description: Activates when performing GitHub operations like creating PRs, managing branches, pushing files, or when GitHub MCP connection fails with errors like "authentication failed" or "GITHUB_PERSONAL_ACCESS_TOKEN".
-version: 1.0.0
+description: Activates when performing GitHub operations like creating PRs, managing branches, viewing issues, or any GitHub-related tasks. Uses the gh CLI command for all GitHub interactions.
+version: 2.0.0
 ---
 
-# GitHub MCP Server
+# GitHub CLI (gh)
 
-## Available Tools
+GitHub操作はすべて `gh` コマンドを使用する。MCP serverは使用しない。
 
-### Branches
-- `mcp__github__create_branch` - Create a remote branch
-- `mcp__github__list_branches` - List branches
+## Pull Requests
 
-### Files
-- `mcp__github__push_files` - Push multiple files at once
-- `mcp__github__create_or_update_file` - Create or update a single file
-- `mcp__github__get_file_contents` - Get file contents
+```bash
+# PR作成
+gh pr create --title "タイトル" --body "説明"
 
-### Pull Requests
-- `mcp__github__create_pull_request` - Create a PR
-- `mcp__github__get_pull_request` - Get PR details
-- `mcp__github__list_pull_requests` - List PRs
-- `mcp__github__update_pull_request` - Update a PR
+# PR一覧
+gh pr list
 
-### Commits
-- `mcp__github__get_commit` - Get commit details
-- `mcp__github__list_commits` - List commit history
-- `mcp__github__get_pull_request_diff` - Get PR diff
+# PR詳細
+gh pr view <number>
+
+# PR編集
+gh pr edit <number> --title "新タイトル" --body "新説明"
+
+# PRをマージ
+gh pr merge <number>
+
+# PRのdiff確認
+gh pr diff <number>
+
+# PRをチェックアウト
+gh pr checkout <number>
+```
+
+## Issues
+
+```bash
+# Issue一覧
+gh issue list
+
+# Issue作成
+gh issue create --title "タイトル" --body "説明"
+
+# Issue詳細
+gh issue view <number>
+
+# Issueをクローズ
+gh issue close <number>
+```
+
+## Branches
+
+```bash
+# ブランチ一覧
+gh api repos/{owner}/{repo}/branches | jq '.[].name'
+
+# リモートブランチ作成（git経由）
+git push origin HEAD:<branch-name>
+```
+
+## Files / Contents
+
+```bash
+# ファイル内容取得
+gh api repos/{owner}/{repo}/contents/{path} | jq -r '.content' | base64 -d
+```
+
+## Commits
+
+```bash
+# コミット一覧
+gh api repos/{owner}/{repo}/commits | jq '.[].commit.message'
+
+# コミット詳細
+gh api repos/{owner}/{repo}/commits/{sha}
+```
+
+## Repository
+
+```bash
+# リポジトリ情報
+gh repo view
+
+# リポジトリをブラウザで開く
+gh repo view --web
+```
 
 ## Troubleshooting
 
-If connection fails, check in order:
+### gh未認証の場合
 
-### 1. Token set?
 ```bash
-echo $GITHUB_PERSONAL_ACCESS_TOKEN
+gh auth status
 ```
-**Fix**: `echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."' >> ~/.zshrc && source ~/.zshrc`, then restart Claude Code.
 
-### 2. Token valid?
+未認証なら：
+
 ```bash
-curl -s -H "Authorization: token $GITHUB_PERSONAL_ACCESS_TOKEN" https://api.github.com/user | head -5
+gh auth login
 ```
-**Fix**: Regenerate at https://github.com/settings/tokens (scopes: `repo`, `read:org`), update `~/.zshrc`.
+
+### 認証確認
+
+```bash
+gh api user | jq '.login'
+```
