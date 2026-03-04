@@ -17,6 +17,11 @@
       "name": "plugin-creation",
       "source": "./plugins/plugin-creation",
       "description": "Plugin for creating and updating Claude Code plugins"
+    },
+    {
+      "name": "coding",
+      "source": "./plugins/coding",
+      "description": "Workflow plugin for coding tasks — gathers context from reference links, plans with EnterPlanMode, implements code, and creates a PR."
     }
   ]
 }
