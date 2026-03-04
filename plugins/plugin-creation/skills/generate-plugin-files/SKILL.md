@@ -19,10 +19,24 @@ README.md                    # Overview, setup, features table
 
 ```yaml
 ---
-name: <skill-name>
+name: <plugin-name>-start          # Orchestrator: <plugin-name>-start
 description: <activation condition>
-user-invocable: false  # Only for task skills. Omit for workflow skills.
+# user-invocable: omit for orchestrator, set false for task skills
 ---
 ```
+
+```yaml
+---
+name: <plugin-name>-<task>         # Task skill: <plugin-name>-<task>
+description: <activation condition>
+user-invocable: false
+---
+```
+
+## Naming Rules
+
+- **Orchestrator**: `<plugin-name>-start` — user-invocable, no `user-invocable` field needed
+- **Task skills**: `<plugin-name>-<task>` — always set `user-invocable: false`
+- Skill directory name must match the skill `name` field
 
 Body contains task execution steps and required knowledge.
