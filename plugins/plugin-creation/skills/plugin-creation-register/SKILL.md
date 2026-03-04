@@ -1,5 +1,5 @@
 ---
-name: register-plugin
+name: plugin-creation-register
 description: Register plugin in marketplace.json.
 user-invocable: false
 ---

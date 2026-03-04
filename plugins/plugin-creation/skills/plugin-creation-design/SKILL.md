@@ -1,5 +1,5 @@
 ---
-name: design-plugin
+name: plugin-creation-design
 description: Design plugin structure from hearing results.
 user-invocable: false
 ---

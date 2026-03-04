@@ -1,5 +1,5 @@
 ---
-name: generate-plugin-files
+name: plugin-creation-generate
 description: Generate all plugin files from the design.
 user-invocable: false
 ---

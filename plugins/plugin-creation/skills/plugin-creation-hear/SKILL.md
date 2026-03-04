@@ -1,5 +1,5 @@
 ---
-name: hear-workflow
+name: plugin-creation-hear
 description: Hear and clarify the user's workflow for plugin creation.
 user-invocable: false
 ---

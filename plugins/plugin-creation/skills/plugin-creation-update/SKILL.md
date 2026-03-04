@@ -1,5 +1,5 @@
 ---
-name: update-plugin
+name: plugin-creation-update
 description: Use when the user wants to update an existing plugin.
 ---
 
