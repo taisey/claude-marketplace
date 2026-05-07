@@ -6,61 +6,40 @@ version: 1.0.0
 
 # Discord Bot Operations
 
-Use the Discord REST API with the bot token for all operations.
-
-## Setup
-
-The bot token must be available as an environment variable:
-
-```bash
-echo $DISCORD_AGENT_TOOL_BOT_TOKEN
+Scripts are located at:
 ```
-
-If not set, ask the user to provide it:
-
-```bash
-export DISCORD_AGENT_TOOL_BOT_TOKEN="your-bot-token"
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/
 ```
 
 ## Send a Message
 
 ```bash
-curl -s -X POST "https://discord.com/api/v10/channels/{channel_id}/messages" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"content": "Your message here"}'
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_send_message.sh <channel_id> "<message>"
 ```
 
 ## Get Messages
 
 ```bash
 # Latest 50 messages (default)
-curl -s "https://discord.com/api/v10/channels/{channel_id}/messages?limit=50" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[].content'
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_get_messages.sh <channel_id>
 
-# With author info
-curl -s "https://discord.com/api/v10/channels/{channel_id}/messages?limit=20" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
-  | jq '.[] | {author: .author.username, content: .content, timestamp: .timestamp}'
+# With custom limit
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_get_messages.sh <channel_id> <limit>
 ```
 
 ## List Guilds (Servers)
 
 ```bash
-curl -s "https://discord.com/api/v10/users/@me/guilds" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
-  | jq '.[] | {id: .id, name: .name}'
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_list_guilds.sh
 ```
 
 ## List Channels in a Guild
 
 ```bash
-curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
-  | jq '.[] | select(.type == 0) | {id: .id, name: .name}'
+~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_list_channels.sh <guild_id>
 ```
 
-`type == 0` filters for text channels only.
+Text channels only (`type == 0`).
 
 ## Finding IDs
 
@@ -69,25 +48,10 @@ curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
 2. Right-click on a server icon → Copy Server ID (guild_id)
 3. Right-click on a channel → Copy Channel ID
 
-**From the API:**
-
-```bash
-# List guilds to find guild_id
-curl -s "https://discord.com/api/v10/users/@me/guilds" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[] | {id, name}'
-
-# Then list channels for that guild
-curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
-  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[] | select(.type==0) | {id, name}'
-```
-
 ## Troubleshooting
 
-### Bot token not set
-Ask the user to provide the Discord bot token and set it as `DISCORD_AGENT_TOOL_BOT_TOKEN`.
-
 ### 401 Unauthorized
-The token is invalid or missing. Verify the token is correct.
+The token is invalid or missing. Verify `DISCORD_AGENT_TOOL_BOT_TOKEN` is set correctly.
 
 ### 403 Forbidden
 The bot lacks permissions in that channel. Required permissions:
@@ -96,8 +60,6 @@ The bot lacks permissions in that channel. Required permissions:
 
 ### 429 Rate Limited
 Wait the number of seconds specified in `retry_after`:
-
-```bash
-# Response body will contain:
-# {"retry_after": 1.234, "global": false}
+```json
+{"retry_after": 1.234, "global": false}
 ```
