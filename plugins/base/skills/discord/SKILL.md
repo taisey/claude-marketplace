@@ -13,20 +13,20 @@ Use the Discord REST API with the bot token for all operations.
 The bot token must be available as an environment variable:
 
 ```bash
-echo $DISCORD_BOT_TOKEN
+echo $DISCORD_AGENT_TOOL_BOT_TOKEN
 ```
 
 If not set, ask the user to provide it:
 
 ```bash
-export DISCORD_BOT_TOKEN="your-bot-token"
+export DISCORD_AGENT_TOOL_BOT_TOKEN="your-bot-token"
 ```
 
 ## Send a Message
 
 ```bash
 curl -s -X POST "https://discord.com/api/v10/channels/{channel_id}/messages" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" \
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"content": "Your message here"}'
 ```
@@ -36,11 +36,11 @@ curl -s -X POST "https://discord.com/api/v10/channels/{channel_id}/messages" \
 ```bash
 # Latest 50 messages (default)
 curl -s "https://discord.com/api/v10/channels/{channel_id}/messages?limit=50" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" | jq '.[].content'
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[].content'
 
 # With author info
 curl -s "https://discord.com/api/v10/channels/{channel_id}/messages?limit=20" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" \
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
   | jq '.[] | {author: .author.username, content: .content, timestamp: .timestamp}'
 ```
 
@@ -48,7 +48,7 @@ curl -s "https://discord.com/api/v10/channels/{channel_id}/messages?limit=20" \
 
 ```bash
 curl -s "https://discord.com/api/v10/users/@me/guilds" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" \
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
   | jq '.[] | {id: .id, name: .name}'
 ```
 
@@ -56,7 +56,7 @@ curl -s "https://discord.com/api/v10/users/@me/guilds" \
 
 ```bash
 curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" \
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" \
   | jq '.[] | select(.type == 0) | {id: .id, name: .name}'
 ```
 
@@ -74,17 +74,17 @@ curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
 ```bash
 # List guilds to find guild_id
 curl -s "https://discord.com/api/v10/users/@me/guilds" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" | jq '.[] | {id, name}'
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[] | {id, name}'
 
 # Then list channels for that guild
 curl -s "https://discord.com/api/v10/guilds/{guild_id}/channels" \
-  -H "Authorization: Bot $DISCORD_BOT_TOKEN" | jq '.[] | select(.type==0) | {id, name}'
+  -H "Authorization: Bot $DISCORD_AGENT_TOOL_BOT_TOKEN" | jq '.[] | select(.type==0) | {id, name}'
 ```
 
 ## Troubleshooting
 
 ### Bot token not set
-Ask the user to provide the Discord bot token and set it as `DISCORD_BOT_TOKEN`.
+Ask the user to provide the Discord bot token and set it as `DISCORD_AGENT_TOOL_BOT_TOKEN`.
 
 ### 401 Unauthorized
 The token is invalid or missing. Verify the token is correct.
