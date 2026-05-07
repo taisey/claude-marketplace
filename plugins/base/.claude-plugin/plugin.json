@@ -1,7 +1,7 @@
 {
   "name": "base",
-  "version": "1.2.0",
-  "description": "Base plugin providing GitHub integration, PR creation, and connection troubleshooting",
+  "version": "1.3.0",
+  "description": "Base plugin providing GitHub integration, Discord bot operations, PR creation, and connection troubleshooting",
   "author": {
     "name": "taisey",
     "email": ""
