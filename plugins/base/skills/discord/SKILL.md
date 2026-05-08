@@ -6,37 +6,32 @@ version: 1.0.0
 
 # Discord Bot Operations
 
-Scripts are located at:
-```
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/
-```
-
 ## Send a Message
 
 ```bash
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_send_message.sh <channel_id> "<message>"
+${CLAUDE_SKILL_DIR}/scripts/discord_send_message.sh <channel_id> "<message>"
 ```
 
 ## Get Messages
 
 ```bash
 # Latest 50 messages (default)
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_get_messages.sh <channel_id>
+${CLAUDE_SKILL_DIR}/scripts/discord_get_messages.sh <channel_id>
 
 # With custom limit
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_get_messages.sh <channel_id> <limit>
+${CLAUDE_SKILL_DIR}/scripts/discord_get_messages.sh <channel_id> <limit>
 ```
 
 ## List Guilds (Servers)
 
 ```bash
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_list_guilds.sh
+${CLAUDE_SKILL_DIR}/scripts/discord_list_guilds.sh
 ```
 
 ## List Channels in a Guild
 
 ```bash
-~/.claude/plugins/cache/taisey-marketplace/base/1.4.0/scripts/discord/discord_list_channels.sh <guild_id>
+${CLAUDE_SKILL_DIR}/scripts/discord_list_channels.sh <guild_id>
 ```
 
 Text channels only (`type == 0`).
