@@ -6,9 +6,10 @@ Plugin for creating and updating Claude Code plugins.
 
 | Type | Name | Invocation | Description |
 |------|------|------------|-------------|
-| Skill | `create-plugin` | user | Create new plugin workflow |
-| Skill | `update-plugin` | user | Update existing plugin workflow |
-| Skill | `hear-workflow` | task | Workflow hearing |
-| Skill | `design-plugin` | task | Plugin design |
-| Skill | `generate-plugin-files` | task | File generation |
-| Skill | `register-plugin` | task | Marketplace registration |
+| Skill | `plugin-creation-start` | user | Create new plugin workflow |
+| Skill | `plugin-creation-update` | user | Update existing plugin workflow |
+| Skill | `plugin-creation-hear` | task | Workflow hearing |
+| Skill | `plugin-creation-design` | task | Plugin design |
+| Skill | `plugin-creation-generate` | task | File generation |
+| Skill | `plugin-creation-validate` | task | Validate generated/updated plugin files |
+| Skill | `plugin-creation-register` | task | Marketplace registration |

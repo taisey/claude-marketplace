@@ -9,9 +9,9 @@ user-invocable: false
 Generate under `plugins/<plugin-name>/`:
 
 ```
-.claude-plugin/plugin.json   # name, version, description, author
+.claude-plugin/plugin.json   # name, version ("1.0.0"), description, author
 skills/<skill>/SKILL.md      # YAML frontmatter + content
-.mcp.json                    # MCP servers (only if needed)
+.mcp.json                    # MCP servers (only if needed — see format below)
 README.md                    # Overview, setup, features table
 ```
 
@@ -40,3 +40,34 @@ user-invocable: false
 - Skill directory name must match the skill `name` field
 
 Body contains task execution steps and required knowledge.
+
+## .mcp.json Format (if MCP servers are needed)
+
+```json
+{
+  "mcpServers": {
+    "<server-name>": {
+      "command": "<command>",
+      "args": ["<arg1>", "<arg2>"],
+      "env": {
+        "ENV_VAR": "<value>"
+      }
+    }
+  }
+}
+```
+
+Example for a GitHub MCP server:
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}
+```

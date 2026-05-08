@@ -6,7 +6,7 @@ user-invocable: false
 
 # Register Plugin
 
-Add to `plugins` array in `.claude-plugin/marketplace.json`:
+Add to `plugins` array in `.claude-plugin/marketplace.json` at the **repository root** (not inside the plugin directory):
 
 ```json
 {
