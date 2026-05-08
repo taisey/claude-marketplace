@@ -1,6 +1,6 @@
 {
   "name": "coding",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Workflow plugin for coding tasks — gathers context from reference links, plans with EnterPlanMode, implements code, and creates a PR.",
   "author": {
     "name": "taisey",

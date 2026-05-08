@@ -8,13 +8,15 @@ user-invocable: false
 
 ## Steps
 
-1. Ask the user to provide reference links for the task:
+1. Ask the user to provide references for the task:
    - GitHub Issues, PRs, Wiki pages, documentation URLs, etc.
-   - Accept multiple links
+   - Obsidian note names or paths (e.g. `"Meeting Notes"`, `"specs/feature-x.md"`)
+   - Accept multiple references of any type
 
-2. For each link provided:
-   - Use `WebFetch` to read the content
-   - For GitHub issues/PRs, prefer using `gh` CLI (`gh issue view`, `gh pr view`) when possible
+2. For each reference provided:
+   - GitHub issues/PRs: use `gh` CLI (`gh issue view`, `gh pr view`) when possible
+   - URLs: use `WebFetch`
+   - Obsidian notes: use the obsidian skill (`obsidian read file="<name>"` or `obsidian read path="<path>"`);
 
 3. Summarize the extracted context:
    - What needs to be implemented or changed
